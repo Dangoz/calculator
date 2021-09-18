@@ -1,0 +1,48 @@
+.wrapper {
+  width: 200px;
+  height: 300px;
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  grid-template-rows: 1fr 1fr 4fr;
+  box-shadow: 0 0px 10px white;
+}
+
+.displayWrapper {
+  grid-row: 1 / 2;
+  grid-column: 1 / 3;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding-right: 20px;
+}
+
+.numWrapper {
+  grid-row: 3 / 4;
+  grid-column: 1 / 2;
+  background-color: blue;
+  width: 100%;
+  height: 100%;
+}
+
+.utilWrapper {
+  grid-row: 2 / 3;
+  grid-column: 1 / 2;
+  background-color: blueviolet;
+  width: 100%;
+  height: 100%;
+}
+
+.operatorWrapper {
+  grid-row: 2 / 4;
+  grid-column: 2 / 3;
+  background-color: pink;
+  width: 100%;
+  height: 100%;
+}
+
+.icon {
+  width: 50px;
+  height: 50px;
+  margin: 0px;
+  border-radius: 0px;
+}

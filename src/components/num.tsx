@@ -1,4 +1,5 @@
 import { Button } from "antd"
+import CalcStyle from '../styles/calc.module.css'
 
 // number buttons, 0 ~ 9
 const Num = ({ n, result, setResult, newNum, setNewNum }:
@@ -18,8 +19,10 @@ const Num = ({ n, result, setResult, newNum, setNewNum }:
 
   return (
     <>
-      <Button type={'primary'}
-        onClick={inputNum}>{n}</Button>
+      <Button type={'primary'} className={CalcStyle.icon}
+        onClick={inputNum}
+        style={{ width: n === 0 ? '100px' : '' }}
+      >{n}</Button>
     </>
   )
 }

@@ -1,5 +1,6 @@
 import { Button } from "antd"
 import { utilKeys } from "./helper"
+import CalcStyle from '../styles/calc.module.css'
 
 // utility buttons, AC, +/-, %, .(decimal)
 const Util = ({ uType, result, setResult, setAllClear }:
@@ -29,7 +30,8 @@ const Util = ({ uType, result, setResult, setAllClear }:
 
   return (
     <>
-      <Button onClick={() => handlers[uType]()}>
+      <Button onClick={() => handlers[uType]()} className={CalcStyle.icon} type={'primary'}
+        style={{ backgroundColor: '#999999', borderColor: '#999999' }}>
         {(uType === 'AC' && result !== '0') ? 'C' : uType}
       </Button>
     </>

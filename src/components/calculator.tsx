@@ -3,6 +3,7 @@ import Num from './num'
 import Operators from './operators'
 import Util from './util'
 import { utilKeys } from './helper'
+import CalcStyle from '../styles/calc.module.css'
 
 const Calculator = () => {
   const utils: utilKeys[] = ['AC', '+/-', '%', '.'];
@@ -11,23 +12,23 @@ const Calculator = () => {
   const [allClear, setAllClear] = useState(false);
 
   return (
-    <div>
-      <div>{result}</div>
+    <div className={CalcStyle.wrapper}>
+      <div className={CalcStyle.displayWrapper}>{result}</div>
 
-      <div>
+      <div className={CalcStyle.numWrapper}>
         {[1, 2, 3, 4, 5, 6, 7, 8, 9, 0].map(n => (
           <Num key={n} n={n} result={result} setResult={setResult} newNum={newNum} setNewNum={setNewNum} />
         ))}
         <Util uType={utils[3]} result={result} setResult={setResult} setAllClear={setAllClear} />
       </div>
 
-      <div>
+      <div className={CalcStyle.utilWrapper}>
         {utils.slice(0, 3).map(u => (
           <Util key={u} uType={u} result={result} setResult={setResult} setAllClear={setAllClear} />
         ))}
       </div>
 
-      <div>
+      <div className={CalcStyle.operatorWrapper}>
         <Operators result={result} setResult={setResult} newNum={newNum} setNewNum={setNewNum} allClear={allClear} setAllClear={setAllClear} />
       </div>
     </div>
