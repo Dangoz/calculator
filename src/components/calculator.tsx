@@ -28,7 +28,7 @@ const Calculator = () => {
       </div>
 
       <div>
-        <Operators result={result} setResult={setResult} setNewNum={setNewNum} allClear={allClear} setAllClear={setAllClear} />
+        <Operators result={result} setResult={setResult} newNum={newNum} setNewNum={setNewNum} allClear={allClear} setAllClear={setAllClear} />
       </div>
     </div>
   )

@@ -3,10 +3,11 @@ import { useState, useEffect } from "react"
 import Operator from "./operator"
 
 // operator buttons, /, x, -, +, =
-const Operators = ({ result, setResult, setNewNum, allClear, setAllClear }:
+const Operators = ({ result, setResult, newNum, setNewNum, allClear, setAllClear }:
   {
     result: string,
     setResult: React.Dispatch<React.SetStateAction<string>>,
+    newNum: boolean,
     setNewNum: React.Dispatch<React.SetStateAction<boolean>>,
     allClear: boolean,
     setAllClear: React.Dispatch<React.SetStateAction<boolean>>
@@ -18,19 +19,6 @@ const Operators = ({ result, setResult, setNewNum, allClear, setAllClear }:
   const [prevOp, setPrevOp] = useState<operatorKeys>('=');
 
   useEffect(() => {
-    console.log('prevInput changed', prevInput);
-  }, [prevInput])
-  useEffect(() => {
-    console.log('curOp changed', curOp);
-  }, [curOp])
-  useEffect(() => {
-    console.log('curInput changed', curInput);
-  }, [curInput])
-  useEffect(() => {
-    console.log('prevOp changed', prevOp);
-  }, [prevOp])
-
-  useEffect(() => {
     if (allClear) {
       setPrevInput('');
       setCurInput('');
@@ -40,24 +28,16 @@ const Operators = ({ result, setResult, setNewNum, allClear, setAllClear }:
     }
   }, [allClear])
 
-  useEffect(() => {
-
-  }, [result])
-
   const handle = (op: operatorKeys) => {
     setNewNum(true);
+
     if (op === '=' && curOp === '=' && curInput !== '') return calculate[prevOp]();
 
     setPrevOp(curOp);
     setCurOp(op);
-
+    if (newNum && op !== '=') return;
     if (op !== '=' && curOp !== '=' && curInput !== '') return calculate[curOp](true);
 
-    // if (!prevInput.length && !curInput.length) {
-    //   setPrevInput(result);
-    // } else {
-    //   setPrevInput(curInput);
-    // }
     setCurInput(result);
 
     if (op === '=') calculate[curOp]();
@@ -92,7 +72,7 @@ const Operators = ({ result, setResult, setNewNum, allClear, setAllClear }:
   return (
     <div>
       {oKeys.map(o => (
-        <Operator key={o} oType={o} handle={handle} />
+        <Operator key={o} oType={o} handle={handle} curOp={curOp} />
       ))}
     </div>
   )
