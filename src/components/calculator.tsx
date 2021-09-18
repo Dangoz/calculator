@@ -13,7 +13,10 @@ const Calculator = () => {
 
   return (
     <div className={CalcStyle.wrapper}>
-      <div className={CalcStyle.displayWrapper}>{result}</div>
+
+      <div className={CalcStyle.displayWrapper}>
+        {result.length >= 13 ? (+result).toExponential(0) : result}
+      </div>
 
       <div className={CalcStyle.numWrapper}>
         {[1, 2, 3, 4, 5, 6, 7, 8, 9, 0].map(n => (
