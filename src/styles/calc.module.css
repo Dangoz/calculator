@@ -4,7 +4,7 @@
   display: grid;
   grid-template-columns: 3fr 1fr;
   grid-template-rows: 1fr 1fr 4fr;
-  box-shadow: 0 0px 10px white;
+  box-shadow: 0 0px 5px 1px white;
 }
 
 .displayWrapper {
