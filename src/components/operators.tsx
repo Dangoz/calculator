@@ -3,19 +3,20 @@ import { useState, useEffect } from "react"
 import Operator from "./operator"
 
 // operator buttons, /, x, -, +, =
-const Operators = ({ result, setResult, newNum, setNewNum, allClear, setAllClear }:
+const Operators = ({ result, setResult, newNum, setNewNum, allClear, setAllClear, curOp, setCurOp }:
   {
     result: string,
     setResult: React.Dispatch<React.SetStateAction<string>>,
     newNum: boolean,
     setNewNum: React.Dispatch<React.SetStateAction<boolean>>,
     allClear: boolean,
-    setAllClear: React.Dispatch<React.SetStateAction<boolean>>
+    setAllClear: React.Dispatch<React.SetStateAction<boolean>>,
+    curOp: operatorKeys,
+    setCurOp: React.Dispatch<React.SetStateAction<operatorKeys>>
   }) => {
   const oKeys: operatorKeys[] = ['÷', 'x', '-', '+', '='];
   const [curInput, setCurInput] = useState('');
   const [prevInput, setPrevInput] = useState('');
-  const [curOp, setCurOp] = useState<operatorKeys>('=');
   const [prevOp, setPrevOp] = useState<operatorKeys>('=');
 
   useEffect(() => {
@@ -30,6 +31,7 @@ const Operators = ({ result, setResult, newNum, setNewNum, allClear, setAllClear
 
   const handle = (op: operatorKeys) => {
     setNewNum(true);
+    setCurInput(result);
 
     if (op === '=' && curOp === '=' && curInput !== '') return calculate[prevOp]();
 
@@ -37,8 +39,6 @@ const Operators = ({ result, setResult, newNum, setNewNum, allClear, setAllClear
     setCurOp(op);
     if (newNum && op !== '=') return;
     if (op !== '=' && curOp !== '=' && curInput !== '') return calculate[curOp]();
-
-    setCurInput(result);
 
     if (op === '=') calculate[curOp]();
   }
