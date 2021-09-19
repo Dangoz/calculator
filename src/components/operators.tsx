@@ -36,7 +36,7 @@ const Operators = ({ result, setResult, newNum, setNewNum, allClear, setAllClear
     setPrevOp(curOp);
     setCurOp(op);
     if (newNum && op !== '=') return;
-    if (op !== '=' && curOp !== '=' && curInput !== '') return calculate[curOp](true);
+    if (op !== '=' && curOp !== '=' && curInput !== '') return calculate[curOp]();
 
     setCurInput(result);
 
@@ -44,24 +44,28 @@ const Operators = ({ result, setResult, newNum, setNewNum, allClear, setAllClear
   }
 
   const calculate = {
-    '÷': (doubleO: boolean = false) => {
-      if (curOp === '=') return setResult(`${+result / +curInput}`);
-      if (doubleO) setCurInput(`${+curInput / +result}`);
+    '÷': () => {
+      if (curOp === '=') return setResult(`${+result / +prevInput}`);
+      setPrevInput(result);
+      setCurInput(`${+curInput / +result}`)
       setResult(`${+curInput / +result}`);
     },
-    'x': (doubleO: boolean = false) => {
-      if (curOp === '=') return setResult(`${+result * +curInput}`);
-      if (doubleO) setCurInput(`${+curInput * +result}`);
+    'x': () => {
+      if (curOp === '=') return setResult(`${+result * +prevInput}`);
+      setPrevInput(result);
+      setCurInput(`${+curInput * +result}`);
       setResult(`${+curInput * +result}`);
     },
-    '-': (doubleO: boolean = false) => {
-      if (curOp === '=') return setResult(`${+result - +curInput}`);
-      if (doubleO) setCurInput(`${+curInput - +result}`);
+    '-': () => {
+      if (curOp === '=') return setResult(`${+result - +prevInput}`);
+      setPrevInput(result);
+      setCurInput(`${+curInput - +result}`)
       setResult(`${+curInput - +result}`);
     },
-    '+': (doubleO: boolean = false) => {
-      if (curOp === '=') return setResult(`${+result + +curInput}`);
-      if (doubleO) setCurInput(`${+curInput + +result}`);
+    '+': () => {
+      if (curOp === '=') return setResult(`${+result + +prevInput}`);
+      setPrevInput(result);
+      setCurInput(`${+curInput + +result}`)
       setResult(`${+curInput + +result}`);
     },
     '=': () => {

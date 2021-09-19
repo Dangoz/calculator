@@ -8,6 +8,7 @@ const Num = ({ n, result, setResult, newNum, setNewNum }:
     newNum: boolean, setNewNum: React.Dispatch<React.SetStateAction<boolean>>
   }) => {
 
+  // handle num button click
   const inputNum = () => {
     if (newNum) { setResult(`${n}`); return setNewNum(false); }
     (+result || result.slice(0, 2) === '0.')

@@ -10,6 +10,7 @@ const Util = ({ uType, result, setResult, setAllClear }:
     setAllClear: React.Dispatch<React.SetStateAction<boolean>>
   }) => {
 
+  // handler functions for util buttons
   const handlers = {
     '+/-': () => {
       if (result === '0') return setResult('-0');
@@ -40,3 +41,4 @@ const Util = ({ uType, result, setResult, setAllClear }:
 
 
 export default Util
+
